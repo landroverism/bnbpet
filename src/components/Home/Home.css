@@ -1,0 +1,65 @@
+.homePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+}
+
+.main_image{
+    margin-top: 30px;
+    background-image: url("https://a0.muscache.com/im/pictures/23b047cd-19c9-42c0-a83b-2f4f6f25717b.jpg?im_w=2560");
+    width: 85%;
+    height: 75vh;
+    border-radius: 25px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px
+}
+
+.main_image > h1 {
+    color: white;
+    font-size:3em;
+    text-align: center;
+    padding-top: 370px;
+}
+
+.main_image > button {
+    background-color: white;
+    border: 0.5px solid gray;
+    height: 4em;
+    width: 9em;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.main_image > button:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.inspiration {
+    width: 85%;
+}
+
+.inspiration > h1{
+    padding-bottom: 40px;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+.inspiration_cards{
+    display: flex;
+    justify-content: space-between;
+}
+
+footer{
+    background-color: #F7F7F7;
+    width: 100%;
+    height: 40px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #e2e0e0;
+}

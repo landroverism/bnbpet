@@ -1,0 +1,94 @@
+.search_options{
+    display: flex;
+    justify-content: space-between;
+}
+
+.home_types{
+    display: flex;
+    gap: 30px;
+    padding-left: 20px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.home_types > p:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.search_filters{
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+}
+
+.searchButton{
+    background-color: white;
+    border: 0.5px solid gray;
+    height: 3em;
+    width: 7em;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.listHomes {
+    display: flex;
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+  }
+
+.listHomes:hover {
+    opacity: 0.8;
+}
+
+.listHomes > img {
+    height: 200px;
+    width: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.listHomes__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 20px;
+}
+
+.listHomes__infoTop {
+    width: 40vw;
+}
+
+.listHomes__infoTop > h3 {
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.listHomes__infoTop > p {
+    margin-top: 10px;
+    font-size: 13px;
+    color: gray;
+  }
+  
+.listHomes__infoBottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+footer{
+    background-color: #F7F7F7;
+    width: 100%;
+    height: 40px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #e2e0e0;
+}
