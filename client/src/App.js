@@ -1,11 +1,12 @@
 import './App.css'
-import {Route, Link, Routes, Navigate} from "react-router-dom"
+import React from 'react';
+import { Routes, Route } from 'react-router-dom'; // Import Routes and Route
 import Home from './components/Home/Home'
 import Header from './components/Header/Header'
 import SignUp from './components/SignUp/SignUp'
 import LogIn from './components/LogIn/LogIn'
 import Search from './components/Search/Search'
-
+import DogImage from './components/DogImage'
 function App() {
 
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/dog-image" element={<DogImage />} />
         </Routes>
       </main>
 
