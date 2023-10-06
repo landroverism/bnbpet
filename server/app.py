@@ -10,13 +10,13 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///dogsbnb.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
 
 db.init_app(app)
 api = Api(app)
 
 migrate = Migrate(app, db)
 
+# Define your form classes (SignupForm, LoginForm, DogHouseForm, ReviewForm) here
 class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=3, max=255)])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=255)])
@@ -32,7 +32,6 @@ class DogHouseForm(FlaskForm):
 class ReviewForm(FlaskForm):
     rating = IntegerField('Rating', validators=[DataRequired(), NumberRange(min=1, max=5)])
     comment = TextAreaField('Comment', validators=[DataRequired(), Length(min=10)])
-
 
 class UserResource(Resource):
     def get(self, user_id):
@@ -63,6 +62,17 @@ class ReviewResource(Resource):
             if user_id:
                 rating = form.rating.data
                 comment = form.comment.data
+
+                # Add logic to create a new review
+                new_review = Review(
+                    rating=rating,
+                    comment=comment,
+                    user_id=user_id,
+                    
+                )
+                db.session.add(new_review)
+                db.session.commit()
+
                 return {'message': 'Review created successfully'}, 201
             return {'error': 'Unauthorized'}, 401
         return {'error': 'Validation failed', 'errors': form.errors}, 422
@@ -80,11 +90,9 @@ class ReviewResource(Resource):
             })
         return jsonify(review_data), 200
 
-
 api.add_resource(UserResource, '/user/<int:user_id>', endpoint='user')
 api.add_resource(DogHouseResource, '/doghouse/<int:doghouse_id>', endpoint='doghouse')
 api.add_resource(ReviewResource, '/review', endpoint='review')
-
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -92,6 +100,12 @@ def signup():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
+
+        # Add logic to create a new user
+        new_user = User(username=username, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+
         return {'message': 'User created successfully'}, 201
     return {'error': 'Validation failed', 'errors': form.errors}, 422
 
@@ -101,8 +115,14 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        return {'message': 'Login successful'}, 200
-    return {'error': 'Validation failed', 'errors': form.errors}, 422
+
+        # Add logic to handle user login (e.g., check username and password)
+        user = User.query.filter_by(username=username, password=password).first()
+
+        if user:
+            session['user_id'] = user.id
+            return {'message': 'Login successful'}, 200
+        return {'error': 'Login failed'}, 401
 
 @app.route('/logout', methods=['POST'])
 def logout():

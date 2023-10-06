@@ -1,5 +1,4 @@
 import React from 'react'
-import {Route, Link, Routes, Navigate, useNavigate} from "react-router-dom"
 import { useState, useEffect } from "react"
 import './Search.css'
 
@@ -8,7 +7,7 @@ function Search() {
   const [homes, setHomes] = useState([])
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/homes/")
+    fetch("http://127.0.0.1:5555/homes/")
     .then(response => response.json())
     .then(data => setHomes(data))
   },[])

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route, Link, Routes, Navigate, useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import './Header.css'
 
 function Header() {

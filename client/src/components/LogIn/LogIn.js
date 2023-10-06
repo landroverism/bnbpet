@@ -14,24 +14,28 @@ function LogIn() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    fetch('http://127.0.0.1:5555/sign-in/', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(user),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => setToken(data.user.token))
-      .catch((error) => setError(error.message));
+    try {
+      const response = await fetch('http://127.0.0.1:5555/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setToken(data.user.token);
+        // You can perform any additional actions on successful login
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -47,6 +51,7 @@ function LogIn() {
             type="email"
             name="email"
             placeholder="Email"
+            value={user.email}
             onChange={handleChange}
           />
           <input
@@ -54,6 +59,7 @@ function LogIn() {
             type="password"
             name="password"
             placeholder="Password"
+            value={user.password}
             onChange={handleChange}
           />
           <button className="log_in_submit" type="submit">

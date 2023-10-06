@@ -1,69 +1,53 @@
 from app import app, db
 from models import User, DogHouse, Review
-from faker import Faker
-import requests
-import random
 
-# Initialize Faker for generating random data
-fake = Faker()
+app.app_context().push()
 
-# Create an application context
-with app.app_context():
-    # Create the database tables
-    db.create_all()
+# Create the database tables
+db.create_all()
 
-    # Function to fetch a random dog image URL by breed
-    def get_dog_image_url(breed):
-        response = requests.get(f"https://dog.ceo/api/breed/{breed}/images/random")
-        if response.status_code == 200:
-            data = response.json()
-            return data.get("message")
-        return None
+# Create sample user
+user1 = User(username='Lawi Mwaura', password='12345678')
 
-    # Generate a small amount of random data
-    num_users = 5
-    num_doghouses = 5
-    num_reviews = 10
+# Create sample dog houses
+doghouse1 = DogHouse(name='Cozy Cottage', location='New York', breed='Labrador', image_url='https://example.com/doghouse1.jpg', owner=user1)
+doghouse2 = DogHouse(name='Comfy Cabin', location='Los Angeles', breed='Golden Retriever', image_url='https://example.com/doghouse2.jpg', owner=user1)
+doghouse3 = DogHouse(name='Comfy Cabin', location='Los Angeles', breed='Golden Retriever', image_url='https://example.com/doghouse2.jpg', owner=user1)
+doghouse4 = DogHouse(name='Comfy Cabin', location='Los Angeles', breed='Golden Retriever', image_url='https://example.com/doghouse2.jpg', owner=user1)
+doghouse5 = DogHouse(name='Comfy Cabin', location='Los Angeles', breed='Golden Retriever', image_url='https://example.com/doghouse2.jpg', owner=user1)
+doghouse6 = DogHouse(name='Comfy Cabin', location='Los Angeles', breed='Golden Retriever', image_url='https://example.com/doghouse2.jpg', owner=user1)
+doghouse7 = DogHouse(name='Comfy Cabin', location='Los Angeles', breed='Golden Retriever', image_url='https://example.com/doghouse2.jpg', owner=user1)
+doghouse8 = DogHouse(name='Comfy Cabin', location='Los Angeles', breed='Golden Retriever', image_url='https://example.com/doghouse2.jpg', owner=user1)
 
-    users = []
-    doghouses = []
-    reviews = []
+# Create sample reviews
+review1 = Review(rating=5, comment='Excellent place!', user=user1, doghouse=doghouse1)
+review2 = Review(rating=4, comment='Nice but small.', user=user1, doghouse=doghouse2)
+review3 = Review(rating=4, comment='Nice but small.', user=user1, doghouse=doghouse3)
+review4 = Review(rating=4, comment='Nice but small.', user=user1, doghouse=doghouse4)
+review5 = Review(rating=4, comment='Nice but small.', user=user1, doghouse=doghouse5)
+review6 = Review(rating=4, comment='Nice but small.', user=user1, doghouse=doghouse6)
+review7 = Review(rating=4, comment='Nice but small.', user=user1, doghouse=doghouse7)
+review8 = Review(rating=4, comment='Nice but small.', user=user1, doghouse=doghouse8)
 
-    # Create random users
-    for _ in range(num_users):
-        user = User(
-            username=fake.user_name(),
-            password=fake.password()
-        )
-        users.append(user)
+# Add and commit the objects to the database
+db.session.add(user1)
 
-    # Create random doghouses and associate them with random owners
-    for _ in range(num_doghouses):
-        breed = fake.random_element(elements=('husky', 'beagle', 'poodle', 'bulldog', 'labrador'))
-        image_url = get_dog_image_url(breed)
-        doghouse = DogHouse(
-            name=fake.company(),
-            location=fake.city(),
-            owner=random.choice(users),
-            breed=breed,
-            image_url=image_url
-        )
-        doghouses.append(doghouse)
+db.session.add(doghouse1)
+db.session.add(doghouse2)
+db.session.add(doghouse3)
+db.session.add(doghouse4)
+db.session.add(doghouse5)
+db.session.add(doghouse6)
+db.session.add(doghouse7)
+db.session.add(doghouse8)
 
-    # Create random reviews and associate them with random users and doghouses
-    for _ in range(num_reviews):
-        review = Review(
-            rating=random.randint(1, 5),
-            comment=fake.paragraph(),
-            user=random.choice(users),
-            doghouse=random.choice(doghouses)
-        )
-        reviews.append(review)
+db.session.add(review1)
+db.session.add(review2)
+db.session.add(review3)
+db.session.add(review4)
+db.session.add(review5)
+db.session.add(review6)
+db.session.add(review7)
+db.session.add(review8)
 
-    # Add the data to the session and commit
-    db.session.add_all(users)
-    db.session.add_all(doghouses)
-    db.session.add_all(reviews)
-    db.session.commit()
-
-# The database session will be automatically closed when the app context exits
+db.session.commit()
