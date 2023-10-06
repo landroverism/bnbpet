@@ -21,33 +21,33 @@ function Home() {
       </div>
 
       <div className='inspiration'>
-        <h1>Inspiration for your next trip</h1>
+        <h1>Inspiration for your next booking</h1>
         <div className='inspiration_cards'>
           <Card
-            src="https://a0.muscache.com/im/pictures/1542f3bf-a2e5-4917-8370-391a5b004fac.jpg?im_w=720"
-            title="Joshua Tree"
+            src="https://i.pinimg.com/236x/24/bc/1b/24bc1b4f7fe377849b845c3182f47b4c.jpg"
+            title="Ham Kemboi"
             distance="92 miles away"
           />
           <Card
-            src="https://a0.muscache.com/im/pictures/a9d37076-0758-4041-83f8-0e828c32fc85.jpg?im_w=720"
-            title="Palm Springs"
+            src="https://i.pinimg.com/236x/ca/67/0f/ca670fd8f9b595b0c6a16ba49490d450.jpg"
+            title="Lawi Mwaura"
             distance= "78 miles away"
           />
           <Card
-            src="https://a0.muscache.com/im/pictures/a433b4d0-8183-4523-b4c5-99b81c5729c1.jpg?im_w=720"
-            title="Big Bear Lake"
+            src="https://i.pinimg.com/236x/68/99/3c/68993c4fe7034de36b0b6c4fa29ddba5.jpg"
+            title="Steve Kariuki"
             distance="62 miles away"
           />
           <Card
-            src="https://a0.muscache.com/im/pictures/aef20929-0d6a-40e7-8ac9-321ff0edf8c9.jpg?im_w=720"
-            title="Lake Arrowhead"
+            src="https://i.pinimg.com/236x/bb/15/d3/bb15d335184c544143051f20631ecd51.jpg"
+            title="Stephan Maina"
             distance="48 miles away"
           />
         </div>
       </div>
 
       <footer>
-        <p>© 2022 Pawbnb Inc.</p>
+        <p>© 2023 Pawbnb Inc. ft Lawi,Ham,Steve,Ian and Stephan</p>
       </footer>
     </div>
   )
