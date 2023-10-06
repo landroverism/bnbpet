@@ -33,7 +33,7 @@ To represent the user stories effectively, we have identified the following mode
 ## Tech stack used
 - Frontend: React, Redux
 - Backend: Flask (Python)
-- Database: PostgreSQL
+- Database: Sqlite3
 - Styling: CSS, Bootstrap
 
 ## Prerequisites

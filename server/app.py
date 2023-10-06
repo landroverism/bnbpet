@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired, Length, NumberRange
 from models import User, DogHouse, Review
 from models import db
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///dogsbnb.db'
